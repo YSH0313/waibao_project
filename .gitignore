@@ -1,0 +1,12 @@
+*.pyc
+.idea/
+*.iml
+*.log
+*.egg-info
+*.db
+*.pid
+*.out
+*.html
+test.py
+*.jpg
+*xml
