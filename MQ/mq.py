@@ -170,8 +170,8 @@ class Mq(object):
             return 0
 
     def delete_queue(self, queue_name):
-        # url = f'http://{self.rabbit_host}:15672/api/queues/%2F/{queue_name}'
-        url = f'http://{self.rabbit_host}/api/queues/%2F/{queue_name}'
+        url = f'http://{self.rabbit_host}:15672/api/queues/%2F/{queue_name}'
+        # url = f'http://{self.rabbit_host}/api/queues/%2F/{queue_name}'
         data = {"vhost": "/", "name": f"{queue_name}", "mode": "delete"}
         self.s.delete(url=url, json=data, auth=(self.rabbit_user, self.rabbit_password))
 

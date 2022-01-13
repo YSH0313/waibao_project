@@ -19,7 +19,7 @@ from config.all_config import *
 
 class Class_nameSpider(Parent_class):
     name = 'model'
-
+    custom_settings = {'PREFETCH_COUNT': 1}
     def __init__(self):
         Parent_class.__init__(self)
         self.header = {
@@ -46,7 +46,8 @@ def re_name(str_data):
     return new_name
 
 
-def production(spider_name, incremental, pages, owner, remarks, owner_path, interval_time=None, rabbitmq=True, redis=False):
+def production(spider_name, incremental, pages, owner, remarks, owner_path, interval_time=None, rabbitmq=True,
+               redis=False):
     sys.argv.pop(0)
     current_path = os.getcwd()
     if len(sys.argv) != 0:
@@ -60,15 +61,24 @@ def production(spider_name, incremental, pages, owner, remarks, owner_path, inte
             Parent_class = Parent_class
         if redis:
             Parent_class = 'ManagerRedis'
-        only_path = os.path.join(current_path, owner_path+spider_name + '.py')
+        only_path = os.path.join(current_path, owner_path + spider_name + '.py')
+        data_string = """production('spider_name', True, page_ye, '刘庆川', 'remarks_source', 'owner_path_aaab');\r""".replace(
+            'spider_name', spider_name).replace('remarks_source', remarks).replace('owner_path_aaab',
+                                                                                   owner_path).replace('page_ye',
+                                                                                                       str(pages))
+        with open('spliders_lists', 'ab') as new_file:
+            new_file.write(data_string.encode('utf-8'))
+        new_file.close()
         with open(only_path, 'wb') as file:
             file.write(
-                model.replace('Class_name', re_name(spider_name)).replace('model', spider_name).replace('Parent_class', Parent_class).encode('utf-8'))
+                model.replace('Class_name', re_name(spider_name)).replace('model', spider_name).replace('Parent_class',
+                                                                                                        Parent_class).encode(
+                    'utf-8'))
         # if incremental == True:
-        #     # command = f'nohup python -u {os.path.join(current_path, spider_name + ".py")} {pages} >> /dev/null 2>&1 &'
+        #     command = f'nohup python -u {os.path.join(current_path, spider_name + ".py")} {pages} >> /dev/null 2>&1 &'
         #     spider_path = os.path.join('/home/bailian/single_process/spider/', owner_path+spider_name + ".py")
         #     log_path_lats = log_path+f'/{spider_name}.log'
-        #     # sql = """INSERT INTO `{db}`.`single_process_listener`(`spider_path`, `interval_time`, `incremental`, `is_run`, `server_name`, `owner`) VALUES ('{spider_name}', '{interval_time}', '{incremental}', 'no', '{server_name}', '{owner}');""".format(
+        #     sql = """INSERT INTO `{db}`.`single_process_listener`(`spider_path`, `interval_time`, `incremental`, `is_run`, `server_name`, `owner`) VALUES ('{spider_name}', '{interval_time}', '{incremental}', 'no', '{server_name}', '{owner}');""".format(
         #     #     db=Mysql['MYSQL_DBNAME'], spider_name=spider_name, interval_time=interval_time,
         #     #     incremental=incremental, server_name=socket.gethostbyname(socket.gethostname()), owner=owner)
         #
@@ -86,7 +96,7 @@ def production(spider_name, incremental, pages, owner, remarks, owner_path, inte
     if not my_file.is_dir():
         os.makedirs(os.path.join(current_path, owner_path))
 
-    flag = os.path.exists(os.path.join(current_path, owner_path+spider_name + '.py'))
+    flag = os.path.exists(os.path.join(current_path, owner_path + spider_name + '.py'))
     if flag == False:
         creat_spider()
     elif flag == True:
