@@ -19,7 +19,8 @@ from config.all_config import *
 
 class Class_nameSpider(Parent_class):
     name = 'model'
-
+    custom_settings = {'PREFETCH_COUNT': 1}
+    
     def __init__(self):
         Parent_class.__init__(self)
         self.header = {
