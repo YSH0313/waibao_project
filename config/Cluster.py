@@ -10,7 +10,6 @@ import threading
 import dateparser
 from items import *
 from threading import Lock
-from kafka import KafkaProducer
 from datetime import datetime, date
 from confluent_kafka import Producer
 from rediscluster import RedisCluster

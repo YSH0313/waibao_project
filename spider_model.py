@@ -61,6 +61,14 @@ def production(spider_name, incremental, pages, owner, remarks, owner_path, inte
         if redis:
             Parent_class = 'ManagerRedis'
         only_path = os.path.join(current_path, owner_path+spider_name + '.py')
+        data_string = """production('spider_name', True, page_ye, 'waibao_name', 'remarks_source', 'owner_path_aaab');\r""".replace(
+            'spider_name', spider_name).replace('remarks_source', remarks).replace('owner_path_aaab',
+                                                                                   owner_path).replace('page_ye',
+                                                                                                       str(pages)).replace(
+            'waibao_name', str(owner))
+        with open('spliders_lists', 'ab') as new_file:
+            new_file.write(data_string.encode('utf-8'))
+        new_file.close()
         with open(only_path, 'wb') as file:
             file.write(
                 model.replace('Class_name', re_name(spider_name)).replace('model', spider_name).replace('Parent_class', Parent_class).encode('utf-8'))
