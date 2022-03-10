@@ -55,11 +55,11 @@ OTHER_DB = False  # 是否开启第二个数据库连接
 # 连接rabbitmq
 Rabbitmq = {
     'Sgin': 'ysh',
-    'user': 'yuanshaohang',
-    'password': 'bailian@2021',
+    'user': 'guest',
+    'password': 'guest',
     # 'host': '123.57.244.214'
     # 'host': '47.93.127.102'
-    'host': 'qdb-crawler-mq.bl-ai.com'
+    'host': '127.0.0.1'
 }
 Auto_clear = True  # 重启是否自动清空队列
 Asynch = True  # 是否开启异步生产
