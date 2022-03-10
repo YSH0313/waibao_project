@@ -83,7 +83,7 @@ class Cluster(SpiderLog):
             self.other_cursor = self.other_db.cursor()
             self.consumer_db = pymysql.connect(host=OTHER_Mysql['MYSQL_HOST'], user=OTHER_Mysql['MYSQL_USER'], password=OTHER_Mysql['MYSQL_PASSWORD'], port=OTHER_Mysql['PORT'], db=OTHER_Mysql['MYSQL_DBNAME'], charset='utf8', use_unicode=True)
             self.consumer_cursor = self.consumer_db.cursor()
-        if kafka_connection:
+        # if kafka_connection:
             # self.producer = Producer({
             #     'bootstrap.servers': kafka_servers['server'],
             #     'security.protocol': 'SASL_PLAINTEXT',
@@ -92,7 +92,7 @@ class Cluster(SpiderLog):
             #     'sasl.password': kafka_servers['password'],
             #     'message.max.bytes': 20000000
             # })
-            self.producer = KafkaProducer(bootstrap_servers=kafka_servers['server'])
+            # self.producer = KafkaProducer(bootstrap_servers=kafka_servers['server'])
 
     def is_json(self, myjson):
         if isinstance(myjson, dict):
