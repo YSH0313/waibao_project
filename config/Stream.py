@@ -69,12 +69,12 @@ class File_Type:
 
     @staticmethod
     def bytes2hex(bytes):
-        # num = len(bytes)
+        num = len(bytes)
         hexstr = u""
-        for i in range(10):
+        for i in range(num):
             t = u"%x" % bytes[i]
             if len(t) % 2:
-                hexstr += u"0"
+                hexstr += u""
             hexstr += t
         return hexstr.upper()
 

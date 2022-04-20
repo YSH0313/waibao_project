@@ -85,8 +85,8 @@ EMAIL_CONFIG = {
 
 access_key_id = 'xxx'
 access_key_secret = 'xxx'
-bucket_name = 'xxx'
-endpoint = 'xxx'  # 外网
+bucket_name = 'bailian-qudaobao-bidding-snapshot'
+endpoint = 'oss-cn-beijing.aliyuncs.com'  # 外网
 # endpoint = 'xxx'  # 内网
 
 ocr_url = 'xxx'
