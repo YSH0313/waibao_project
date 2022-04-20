@@ -14,6 +14,7 @@ cached-property @ file:///tmp/build/80754af9/cached-property_1600785575025/work
 certifi==2021.10.8
 cffi @ file:///opt/concourse/worker/volumes/live/4a8f7628-1917-402a-5a6a-cdafcc3ec547/volume/cffi_1625814707380/work
 chardet @ file:///opt/concourse/worker/volumes/live/9efbf151-b45b-463d-6340-a5c399bf00b7/volume/chardet_1607706825988/work
+confluent-kafka==1.8.2
 constantly==15.1.0
 crcmod==1.7
 cryptography @ file:///opt/concourse/worker/volumes/live/dfab5924-fd99-4f24-7939-7dbf6f1585f3/volume/cryptography_1639414584824/work
