@@ -1232,11 +1232,14 @@ class Deal(Cluster, Mq, Proxy_midddwaer):
     #     return data_list
 
     def ocr_result(self, file_bytes):
-        stream = File_Type.stream_type(file_bytes)
-        result = []
-        if stream == 'pdf' or stream == 'jpg' or stream == 'png' or stream == 'doc'or stream == 'docx':
-            result = RecoFactory.reco_url(file_bytes, stream)
-        return result
+        if len(file_bytes) > 10:
+            stream = File_Type.stream_type(file_bytes)
+            result = []
+            if stream == 'pdf' or stream == 'jpg' or stream == 'png' or stream == 'doc' or stream == 'docx':
+                result = RecoFactory.reco_url(file_bytes, stream)
+            return result
+        else:
+            return []
 
     def pdf2text(self, pdf_bytes):
         try:
